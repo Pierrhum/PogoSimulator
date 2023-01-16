@@ -138,6 +138,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1031630181163800506}
   - component: {fileID: 6390954198387314112}
+  - component: {fileID: -3797927629360641884}
+  - component: {fileID: 7731838073019129430}
+  - component: {fileID: 4540161944294939284}
   m_Layer: 0
   m_Name: James
   m_TagString: Untagged
@@ -182,6 +185,49 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-3797927629360641884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367824587899489536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca050c5ce9334a4f99cb29c4787bdbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimNB: 1
+--- !u!136 &7731838073019129430
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367824587899489536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.8222178
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.83321565, z: 0}
+--- !u!54 &4540161944294939284
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367824587899489536}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &383069755215366909
 GameObject:
   m_ObjectHideFlags: 0

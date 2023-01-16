@@ -1,0 +1,82 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Playables;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
+    public BestScores BestScores;
+
+    public PlayerController Player;
+    public PlayableDirector Music;
+    public Entrance _Entrance;
+    public List<GameObject> StageGuys;
+    public List<NPCDancer> Public;
+    public List<PogoAI> PogoGuys;
+    public bool Freezed = false;
+    [NonSerialized] public int MusicIndex;
+    
+
+    private void Awake()
+    {
+        Public = new List<NPCDancer>();
+        PogoGuys = new List<PogoAI>();
+        instance = this;
+    }
+
+    public void FreezePeople()
+    {
+        Music.Pause();
+        StageGuys.ForEach(s => s.GetComponent<Animator>().speed = 0);
+        Public.ForEach(p => p.GetComponent<Animator>().speed = 0);
+        PogoGuys.ForEach(p =>
+        {
+            p.GetComponent<Animator>().speed = 0;
+            p.GetComponent<NavMeshAgent>().isStopped = true;
+        });
+        
+        Freezed = true;
+    }
+
+    public void UnFreezePeople()
+    {
+        Music.Resume();
+        StageGuys.ForEach(s => s.GetComponent<Animator>().speed = 1);
+        Public.ForEach(p => p.GetComponent<Animator>().speed = 1);
+        PogoGuys.ForEach(p =>
+        {
+            p.GetComponent<Animator>().speed = 1;
+            p.GetComponent<NavMeshAgent>().isStopped = false;
+        });
+        
+        Freezed = false;
+    }
+
+    public void EndGame()
+    {
+        FreezePeople();
+        StartCoroutine(HUD.instance.EndGameScreen.EndGameAppearance(Player.Score, 1f));
+    }
+
+    public bool isBestScore(int Score)
+    {
+        return true;
+    }
+
+    public void Reset()
+    {
+        _Entrance.HidePeople();
+        Player.Reset();
+        PogoGuys.ForEach(p =>
+        {
+            p.StopAllCoroutines();
+            Destroy(p.gameObject);
+        });
+        PogoGuys.Clear();
+        UnFreezePeople();
+    }
+}
