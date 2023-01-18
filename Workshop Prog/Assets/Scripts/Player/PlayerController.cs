@@ -21,10 +21,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public Camera Camera;
 
-    private CameraController _cameraController;
 
-    private float yaw = 0f;
-    private float pitch = 0f;
+    public CameraController _cameraController;
     private Vector2 inputVector;
 
     private bool isPushing = false;
@@ -40,17 +38,12 @@ public class PlayerController : MonoBehaviour
     {
         Animator = GetComponentInChildren<Animator>();
         Camera = GetComponentInChildren<Camera>();
-        _cameraController = Camera.gameObject.GetComponent<CameraController>();
         Rigidbody = GetComponent<Rigidbody>();
         CurrentLife = MaxLife;
         InitPos = transform.position;
         InitEul = transform.eulerAngles;
         
         DisableRagdolls();
-
-        
-        pitch = Camera.transform.eulerAngles.x;
-        yaw = Camera.transform.eulerAngles.y;
     }
 
     private void Start()
@@ -69,6 +62,7 @@ public class PlayerController : MonoBehaviour
         transform.position = InitPos;
         transform.eulerAngles = InitEul;
         _cameraController.SetCamera(CameraType.PLAYER);
+        Animator.SetFloat("Life", CurrentLife / MaxLife);
         DisableRagdolls();
     }
 
@@ -143,23 +137,10 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (CanPlay)
+        if (CanPlay && !isStun)
         {
-            if (isStun)
-            {
-                // TODO : Check CameraController instead
-                //Camera.transform.position = Mesh.position + (new Vector3(0,1,-1) * 2);
-                //Camera.transform.LookAt(Mesh);
-            }
-            else
-            {
-                Animator.SetFloat("Life", CurrentLife / MaxLife);
-                yaw += Input.GetAxis("Mouse X");
-                pitch -= Input.GetAxis("Mouse Y");
-                Camera.transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -50,50), Camera.transform.eulerAngles.y, Camera.transform.eulerAngles.z);
-                transform.eulerAngles = new Vector3(0, yaw, 0);
-                Rigidbody.velocity = transform.TransformDirection(new Vector3(inputVector.x, 0, inputVector.y));
-            }
+            _cameraController.UseCameraInputs();
+            Rigidbody.velocity = transform.TransformDirection(new Vector3(inputVector.x, 0, inputVector.y));
         }
     }
 
@@ -185,6 +166,7 @@ public class PlayerController : MonoBehaviour
         {
             CurrentLife -= damage;
             HUD.instance.UpdateHealthBar(CurrentLife / MaxLife);
+            Animator.SetFloat("Life", CurrentLife / MaxLife);
             
             // Death
             if (isAlive && CurrentLife <= 0)
