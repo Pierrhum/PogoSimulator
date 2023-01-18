@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class Screen : MonoBehaviour
 {
     public float CameraSwapTime = 2f;
-    public List<Material> CamerasMaterials;
+    public List<ScreenCamera> ScreenCameras;
     private MeshRenderer ScreenMesh;
 
     private void Awake()
@@ -17,6 +17,10 @@ public class Screen : MonoBehaviour
 
     private void Start()
     {
+        foreach (ScreenCamera screenCamera in ScreenCameras)
+        {
+            screenCamera.associatedCamera.enabled = false;
+        }
         StartCoroutine(CameraSwapCoroutine());
     }
 
@@ -24,8 +28,19 @@ public class Screen : MonoBehaviour
     {
         while (true)
         {
-            ScreenMesh.material = CamerasMaterials[Random.Range(0, CamerasMaterials.Count)];
+            ScreenCamera screenCamera = ScreenCameras[Random.Range(0, ScreenCameras.Count)];
+            screenCamera.associatedCamera.enabled = true;
+            ScreenMesh.material = screenCamera.material;
+            
             yield return new WaitForSeconds(CameraSwapTime);
+            screenCamera.associatedCamera.enabled = false;
         }
     }
+}
+
+[Serializable]
+public struct ScreenCamera
+{
+    public Camera associatedCamera;
+    public Material material;
 }

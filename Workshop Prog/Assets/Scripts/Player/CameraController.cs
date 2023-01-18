@@ -16,7 +16,8 @@ public class CameraController : MonoBehaviour
     public CinemachineVirtualCamera RagdollCamera;
     public Transform Aim;
     
-    private Camera _camera;
+    [System.NonSerialized]
+    public Camera _camera;
     private float SensitivityX = 2f;
     private float SensitivityY = 0.1f;
     private float yaw = 0f;

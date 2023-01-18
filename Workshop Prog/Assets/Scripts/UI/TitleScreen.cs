@@ -96,6 +96,8 @@ public class TitleScreen : MonoBehaviour
         CameraTimeline.time = 0;
         CameraTimeline.Evaluate();
         TitleScreenCamera.enabled = false;
+        Player.Camera.enabled = true;
+        Player.FaceCamera.enabled = true;
         HUD.instance.GameHUD.SetActive(true);
     }
 

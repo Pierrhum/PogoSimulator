@@ -35,7 +35,6 @@ public class EndGameScreen : MonoBehaviour
 
     public IEnumerator EndGameAppearance(int Score, float duration)
     {
-        Debug.Log("called");
         HUD.instance.GameHUD.SetActive(false);
         float timer = 0f;
         UITransitionEffect transition = Overlay.GetComponent<UITransitionEffect>();
@@ -49,6 +48,8 @@ public class EndGameScreen : MonoBehaviour
         transition.effectFactor = 1f;
 
         HighScore.gameObject.SetActive(GameManager.instance.isBestScore(Score));
+        Player.Camera.enabled = false;
+        Player.FaceCamera.enabled = false;
         Player.CanPlay = false;
         ScoreText.text = "" + Score;
         Singer.EndState();

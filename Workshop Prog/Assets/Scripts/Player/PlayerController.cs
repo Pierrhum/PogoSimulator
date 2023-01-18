@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     private bool isAlive = true;
     private Animator Animator;
     private Rigidbody Rigidbody;
-    [System.NonSerialized]
-    public Camera Camera;
-
+    
+    public Camera Camera { get { return _cameraController._camera; } }
+    public Camera FaceCamera { get { return PlayerHUD.FaceCamera; } }
 
     public CameraController _cameraController;
     private Vector2 inputVector;
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Animator = GetComponentInChildren<Animator>();
-        Camera = GetComponentInChildren<Camera>();
         Rigidbody = GetComponent<Rigidbody>();
         CurrentLife = MaxLife;
         InitPos = transform.position;
@@ -49,6 +48,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         HUD.instance.SetScore(Score);
+        Camera.enabled = false;
+        FaceCamera.enabled = false;
     }
 
     public void Reset()

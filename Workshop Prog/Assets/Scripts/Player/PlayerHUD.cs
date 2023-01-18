@@ -8,7 +8,7 @@ public class PlayerHUD : MonoBehaviour
 {
     public Image GetUp;
     public GameObject KeySpam;
-    public Camera PlayerCamera;
+    public Camera FaceCamera;
 
     private void Awake()
     {
