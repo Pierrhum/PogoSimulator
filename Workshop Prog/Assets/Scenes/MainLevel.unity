@@ -13668,7 +13668,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570360298}
-  m_LocalRotation: {x: 0.62302953, y: 0.0002126972, z: -0.00016941567, w: 0.7821983}
+  m_LocalRotation: {x: 0.62302953, y: 0.00021273084, z: -0.00016944247, w: 0.7821983}
   m_LocalPosition: {x: 56.520054, y: 6.941802, z: 35.565605}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17296,6 +17296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndGameScreen: {fileID: 2082913235}
   GameHUD: {fileID: 93111366}
+  HurtFeedbackPrefab: {fileID: 448136426844468018, guid: 5e2853bc1b6c2024aa14d32fe6fb4f78, type: 3}
   Score: {fileID: 1208152514}
   HealthBar: {fileID: 1891960779}
 --- !u!114 &2082913235
@@ -18747,6 +18748,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2071039370269286923, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074890615336601157, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
