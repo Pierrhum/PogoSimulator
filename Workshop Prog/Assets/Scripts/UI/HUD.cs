@@ -18,6 +18,7 @@ public class HUD : MonoBehaviour
     private void Awake()
     {
         EndGameScreen = GetComponent<EndGameScreen>();
+        GameHUD.SetActive(false);
         instance = this;
     }
 

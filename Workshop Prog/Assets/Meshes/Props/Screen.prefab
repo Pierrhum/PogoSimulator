@@ -939,9 +939,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 541374639}
   - {fileID: 3509421012568865401}
   - {fileID: 3894576637021541083}
+  - {fileID: 541374639}
   m_Father: {fileID: 722714639}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1345,7 +1345,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 296145333}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1428,6 +1428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555646859}
   - component: {fileID: 555646861}
+  - component: {fileID: 4961551693972413515}
   - component: {fileID: 555646860}
   m_Layer: 5
   m_Name: Title
@@ -1464,6 +1465,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555646858}
   m_CullTransparentMesh: 1
+--- !u!114 &4961551693972413515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555646858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29c66207e4c59d4081c36000f2b06bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FaceDilate: -0.5
 --- !u!114 &555646860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2233,6 +2247,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 0}
   TitleScreenCamera: {fileID: 1753240168}
   Canvas: {fileID: 296145332}
+  m_FaceDilate: -0.5
 --- !u!1 &783125506
 GameObject:
   m_ObjectHideFlags: 0
@@ -6583,7 +6598,7 @@ RectTransform:
   - {fileID: 614904571621261633}
   - {fileID: 1068747305}
   m_Father: {fileID: 296145333}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6695,6 +6710,9 @@ MonoBehaviour:
   - {fileID: 1182301228}
   - {fileID: 925898894}
   - {fileID: 1391149847}
+  Player1Score: {fileID: 0}
+  Player2Score: {fileID: 0}
+  Player3Score: {fileID: 0}
 --- !u!1 &2636674539767108879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6807,7 +6825,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 296145333}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7020,13 +7038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraSwapTime: 5
-  CamerasMaterials:
-  - {fileID: 2100000, guid: bd7857233ed92074b879d8a977263df4, type: 2}
-  - {fileID: 2100000, guid: c28bf893a050d9f4fbc5221acb348972, type: 2}
-  - {fileID: 2100000, guid: 3ceba35a01eb824469b8a6402bd04297, type: 2}
-  - {fileID: 2100000, guid: 03beae13bb3de764898367e1ecd79aa7, type: 2}
-  - {fileID: 2100000, guid: 1e0b65e5f9c08dd4a8859978204b7b90, type: 2}
-  - {fileID: 2100000, guid: 66620212b8c4c8944b05c2e1f595e8b8, type: 2}
+  ScreenCameras: []
 --- !u!1 &7450169581397875628
 GameObject:
   m_ObjectHideFlags: 0

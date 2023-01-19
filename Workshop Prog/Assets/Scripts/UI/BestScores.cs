@@ -48,13 +48,20 @@ public class BestScores : MonoBehaviour, IDataPersistence
                 for(int rank=0; rank < 3; rank++)
                     if(rank < VivreLibreOuMourir.Count)
                         SetRank(rank, VivreLibreOuMourir[rank].name, VivreLibreOuMourir[rank].score);
-                    else {
-                        if(rank == 0) First.SetActive(false);
-                        else if (rank == 1) Second.SetActive(false);
-                        else Third.SetActive(false);
+                    else
+                    {
+                        if (rank == 0) SetActiveForChilds(First.transform, false);
+                        else if (rank == 1) SetActiveForChilds(Second.transform, false);
+                        else SetActiveForChilds(Third.transform, false);
                     }
                 break;
         }
+    }
+
+    private void SetActiveForChilds(Transform _transform, bool isActive)
+    {
+        for(int i=0; i < _transform.childCount; i++)
+            _transform.GetChild(i).gameObject.SetActive(isActive);
     }
 
     private void SetRank(int rank, string name, int score)
@@ -62,19 +69,19 @@ public class BestScores : MonoBehaviour, IDataPersistence
 
         if (rank == 0)
         {
-            First.SetActive(true);
+            SetActiveForChilds(First.transform, true);
             SetPlayerName(Player1Name, name);
             Player1Score.text = "" + score;
         }
         else if(rank==1)
         {
-            Second.SetActive(true);
+            SetActiveForChilds(Second.transform ,true);
             SetPlayerName(Player2Name, name);
             Player2Score.text = "" + score;
         }
         else if(rank==2)
         {
-            Third.SetActive(true);
+            SetActiveForChilds(Third.transform, true);
             SetPlayerName(Player3Name, name);
             Player3Score.text = "" + score;
         }

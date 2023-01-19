@@ -12,49 +12,22 @@ public class TitleScreen : MonoBehaviour
     public PlayerController Player;
     public PlayableDirector CameraTimeline;
     public List<PlayableDirector> Musics;
-    public UIDissolve Overlay;
-    public TextMeshProUGUI Title;
     public TMP_Dropdown Songs;
-    public Camera PlayerCamera;
     public Camera TitleScreenCamera;
+    public GameObject Canvas;
+    public List<TMPFontAnimator> FontAnimators;
+    
     private Vector3 initTitleScreenCameraPos;
     private Vector3 initTitleScreenCameraEul;
-    public GameObject Canvas;
-
     private int lastSong = 0;
 
-    private void Start()
+    private void StartFontAnimation(int TMPFontIndex)
     {
-        HUD.instance.GameHUD.SetActive(false);
-        Title.font.material.SetFloat("_FaceDilate",-1);
-        Title.font.material.SetFloat("_GlowPower",0);
-        initTitleScreenCameraPos = TitleScreenCamera.transform.localPosition;
-        initTitleScreenCameraEul = TitleScreenCamera.transform.localEulerAngles;
-        StartCoroutine(OpeningCoroutine(1f));
-    }
-
-    private IEnumerator OpeningCoroutine(float duration)
+            FontAnimators[TMPFontIndex].StartAnimation();
+    }    
+    private void StopFontAnimation(int TMPFontIndex)
     {
-        yield return StartCoroutine(Fade(2f));
-        float timer = 0f;
-        while (timer < duration)
-        {
-            Title.font.material.SetFloat("_FaceDilate",Mathf.Lerp(-1,0, timer / duration));
-            Title.font.material.SetFloat("_GlowPower",Mathf.Lerp(0,0.75f, timer / duration));
-            timer += Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-    }
-
-    private IEnumerator Fade(float duration)
-    {
-        float timer = 0f;
-        while (timer < 2f)
-        {
-            Overlay.width = Overlay.effectFactor = timer / duration;
-            timer += Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
+        FontAnimators[TMPFontIndex].StopAnimation();
     }
     public void Play()
     {
@@ -71,11 +44,6 @@ public class TitleScreen : MonoBehaviour
         Musics[Songs.value].Play();
     }
 
-    public void UpdateScores()
-    {
-        
-    }
-    
     public void DropdownValueChanged()
     {
         if (Songs.value < Musics.Count)

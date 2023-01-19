@@ -26,6 +26,9 @@ public class Screen : MonoBehaviour
 
     private IEnumerator CameraSwapCoroutine()
     {
+        ScreenCameras[2].associatedCamera.enabled = true;
+        yield return new WaitForSeconds(CameraSwapTime);
+        ScreenCameras[2].associatedCamera.enabled = false;
         while (true)
         {
             ScreenCamera screenCamera = ScreenCameras[Random.Range(0, ScreenCameras.Count)];
