@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class GameManager : MonoBehaviour
     public BestScores BestScores;
 
     public PlayerController Player;
-    public PlayableDirector Music;
+    public PlayableDirector MusicDirector;
+    public List<TimelineAsset> Musics;
     public Entrance _Entrance;
     public List<GameObject> StageGuys;
     public List<NPCDancer> Public;
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void FreezePeople()
     {
-        Music.Pause();
+        MusicDirector.Pause();
         StageGuys.ForEach(s => s.GetComponent<Animator>().speed = 0);
         Public.ForEach(p => p.GetComponent<Animator>().speed = 0);
         PogoGuys.ForEach(p =>
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void UnFreezePeople()
     {
-        Music.Resume();
+        MusicDirector.Resume();
         StageGuys.ForEach(s => s.GetComponent<Animator>().speed = 1);
         Public.ForEach(p => p.GetComponent<Animator>().speed = 1);
         PogoGuys.ForEach(p =>

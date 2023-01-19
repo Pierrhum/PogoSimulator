@@ -11,7 +11,6 @@ public class TitleScreen : MonoBehaviour
 {
     public PlayerController Player;
     public PlayableDirector CameraTimeline;
-    public List<PlayableDirector> Musics;
     public TMP_Dropdown Songs;
     public Camera TitleScreenCamera;
     public GameObject Canvas;
@@ -19,7 +18,6 @@ public class TitleScreen : MonoBehaviour
     
     private Vector3 initTitleScreenCameraPos;
     private Vector3 initTitleScreenCameraEul;
-    private int lastSong = 0;
 
     private void StartFontAnimation(int TMPFontIndex)
     {
@@ -40,17 +38,17 @@ public class TitleScreen : MonoBehaviour
 
     public void ReplayMusic()
     {
-        Musics[Songs.value].Stop();
-        Musics[Songs.value].Play();
+        GameManager.instance.MusicDirector.Stop();
+        GameManager.instance.MusicDirector.Play();
     }
 
     public void DropdownValueChanged()
     {
-        if (Songs.value < Musics.Count)
+        if (Songs.value < GameManager.instance.Musics.Count)
         {
-            Musics[lastSong].Stop();
-            Musics[Songs.value].Play();
-            lastSong = Songs.value;
+            GameManager.instance.MusicDirector.Stop();
+            GameManager.instance.MusicDirector.playableAsset = GameManager.instance.Musics[Songs.value];
+            GameManager.instance.MusicDirector.Play();
         }
     }
 
