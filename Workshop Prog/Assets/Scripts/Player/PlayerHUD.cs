@@ -19,13 +19,12 @@ public class PlayerHUD : MonoBehaviour
     public void SetGetUp(float fill)
     {
         if (!GetUp.enabled) GetUp.enabled = true;
-        if(!KeySpam.activeSelf) KeySpam.SetActive(true);
         GetUp.fillAmount = fill;
 
         if (fill >= 1f)
             StartCoroutine(FadeOut(GetUp, 1f));
-
     }
+
 
     private IEnumerator FadeOut(Image img, float duration)
     {

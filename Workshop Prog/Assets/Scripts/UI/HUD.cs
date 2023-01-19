@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour
     public static HUD instance;
     public EndGameScreen EndGameScreen;
     public GameObject GameHUD;
+    public GameObject HurtFeedbackPrefab;
 
     [SerializeField] private TextMeshProUGUI Score;
     [SerializeField] private Image HealthBar;
@@ -20,6 +21,12 @@ public class HUD : MonoBehaviour
         EndGameScreen = GetComponent<EndGameScreen>();
         GameHUD.SetActive(false);
         instance = this;
+    }
+    
+    public void HurtFeedback()
+    {
+        GameObject go = Instantiate(HurtFeedbackPrefab, transform);
+        go.GetComponent<HurtFeedback>().Pop();
     }
 
     public void SetScore(int _score)

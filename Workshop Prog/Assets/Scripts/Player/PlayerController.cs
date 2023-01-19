@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(Mesh.transform.position.x, transform.position.y, Mesh.transform.position.z);
                 //transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mesh.eulerAngles.y, transform.eulerAngles.z);
                 DisableRagdolls();
-                GameManager.instance.FreezePeople();
             }
             
             GetUpKeyHit++;
@@ -118,7 +117,6 @@ public class PlayerController : MonoBehaviour
                 _cameraController.SetCamera(CameraType.PLAYER);
                 GetUpKeyHit = 0;
                 PlayerHUD.SetGetUp(1f);
-                GameManager.instance.UnFreezePeople();
             }
         }
     }
@@ -182,6 +180,11 @@ public class PlayerController : MonoBehaviour
                 RagdollCount++;
                 EnableRagdolls();
                 isStun = true;
+                PlayerHUD.KeySpam.SetActive(true);
+            }
+            else
+            {
+                HUD.instance.HurtFeedback();
             }
         }
     }
