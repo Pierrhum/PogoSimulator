@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     
     [System.NonSerialized]
     public Camera _camera;
-    private float SensitivityX = 2f;
+    private float SensitivityX = 1.5f;
     private float SensitivityY = 0.1f;
     private float yaw = 0f;
     private float pitch = 0f;
