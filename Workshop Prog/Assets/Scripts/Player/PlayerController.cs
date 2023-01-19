@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isAlive = true;
     private Animator Animator;
     private Rigidbody Rigidbody;
+    private SkinnedMeshRenderer _renderer;
     
     public Camera Camera { get { return _cameraController._camera; } }
     public Camera FaceCamera { get { return PlayerHUD.FaceCamera; } }
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isPushing = false;
     private bool isStun = false;
+    private bool isInvicible = false;
     public bool CanPlay = false;
 
     public int Ragdolls = 3;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         Animator = GetComponentInChildren<Animator>();
         Rigidbody = GetComponent<Rigidbody>();
+        _renderer = GetComponentInChildren<SkinnedMeshRenderer>();
         CurrentLife = MaxLife;
         InitPos = transform.position;
         InitEul = transform.eulerAngles;
@@ -161,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
     private void Hurt(float damage)
     {
-        if (!isStun)
+        if (!isStun && !isInvicible)
         {
             CurrentLife -= damage;
             HUD.instance.UpdateHealthBar(CurrentLife / MaxLife);
@@ -183,9 +186,7 @@ public class PlayerController : MonoBehaviour
                 PlayerHUD.KeySpam.SetActive(true);
             }
             else
-            {
-                HUD.instance.HurtFeedback();
-            }
+                HurtFeeback();
         }
     }
 
@@ -214,5 +215,27 @@ public class PlayerController : MonoBehaviour
     private void DisablePush()
     {
         isPushing = false;
+    }
+
+    private void HurtFeeback()
+    {
+        isInvicible = true;
+        HUD.instance.HurtFeedback();
+        StartCoroutine(BlinkMeshCoroutine(6));
+    }
+
+    private IEnumerator BlinkMeshCoroutine(int blink)
+    {
+        int blinkCount = 0;
+        Color MeshColor = _renderer.material.color;
+        while (blinkCount < blink)
+        {
+            _renderer.enabled = false;
+            yield return new WaitForSeconds(.15f);
+            _renderer.enabled = true;
+            yield return new WaitForSeconds(.15f);
+            blinkCount++;
+        }
+        isInvicible = false;
     }
 }
