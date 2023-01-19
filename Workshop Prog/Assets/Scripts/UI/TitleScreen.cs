@@ -36,6 +36,7 @@ public class TitleScreen : MonoBehaviour
     {
         GameManager.instance.MusicIndex = Songs.value;
         AudioManager.instance.Play(Type.Gaddem);
+        Cursor.visible = false;
         Canvas.SetActive(false);
         ReplayMusic();
         StartCoroutine(GoToPlayerCameraCoroutine(.5f));

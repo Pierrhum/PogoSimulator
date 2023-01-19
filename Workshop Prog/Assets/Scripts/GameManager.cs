@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         Public = new List<NPCDancer>();
         PogoGuys = new List<PogoAI>();
+        Cursor.lockState = CursorLockMode.Confined;
         instance = this;
     }
 

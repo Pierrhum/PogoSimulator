@@ -55,6 +55,7 @@ public class EndGameScreen : MonoBehaviour
         Singer.EndState();
         EndCamera.enabled = true;
         Canvas.SetActive(true);
+        Cursor.visible = true;
         
         yield return new WaitForSeconds(1f);
         
