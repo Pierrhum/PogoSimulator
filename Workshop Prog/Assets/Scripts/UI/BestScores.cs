@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public enum MusicName
 {
     VivreLibreOuMourir = 0,
+    MortAuxCons = 1,
     
 }
 
@@ -27,10 +28,12 @@ public class BestScores : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI Player3Score;
 
     [NonSerialized] public List<SaveData> VivreLibreOuMourir;
+    [NonSerialized] public List<SaveData> MortAuxCons;
 
     private void Awake()
     {
         VivreLibreOuMourir = new List<SaveData>();
+        MortAuxCons = new List<SaveData>();
     }
     
     private void Start()
@@ -42,19 +45,27 @@ public class BestScores : MonoBehaviour, IDataPersistence
     public void UpdateSongScores()
     {
         MusicName _name = (MusicName) GameManager.instance.MusicIndex;
+        List<SaveData> SongScores = new List<SaveData>();
         switch (_name)
         {
             case MusicName.VivreLibreOuMourir:
-                for(int rank=0; rank < 3; rank++)
-                    if(rank < VivreLibreOuMourir.Count)
-                        SetRank(rank, VivreLibreOuMourir[rank].name, VivreLibreOuMourir[rank].score);
-                    else
-                    {
-                        if (rank == 0) SetActiveForChilds(First.transform, false);
-                        else if (rank == 1) SetActiveForChilds(Second.transform, false);
-                        else SetActiveForChilds(Third.transform, false);
-                    }
+                SongScores = VivreLibreOuMourir;
                 break;
+            case MusicName.MortAuxCons:
+                SongScores = MortAuxCons;
+                break;
+        }
+
+        for (int rank = 0; rank < 3; rank++)
+        {
+            if(rank < SongScores.Count)
+                SetRank(rank, SongScores[rank].name, SongScores[rank].score);
+            else
+            {
+                if (rank == 0) SetActiveForChilds(First.transform, false);
+                else if (rank == 1) SetActiveForChilds(Second.transform, false);
+                else SetActiveForChilds(Third.transform, false);
+            }
         }
     }
 
@@ -112,6 +123,12 @@ public class BestScores : MonoBehaviour, IDataPersistence
                 if(VivreLibreOuMourir.Count > 3)
                     VivreLibreOuMourir.RemoveAt(3);
                 break;
+            case MusicName.MortAuxCons:
+                MortAuxCons.Add(_newData);
+                MortAuxCons.Sort((s1, s2) => s2.score.CompareTo(s1.score));
+                if(MortAuxCons.Count > 3)
+                    MortAuxCons.RemoveAt(3);
+                break;
             default:
                 break;
         }
@@ -121,10 +138,12 @@ public class BestScores : MonoBehaviour, IDataPersistence
     public void LoadData(SaveGame data)
     {
         VivreLibreOuMourir = data.VivreLibreOuMourir;
+        MortAuxCons = data.MortAuxCons;
     }
 
     public void SaveData(SaveGame data)
     {
         data.VivreLibreOuMourir = VivreLibreOuMourir;
+        data.MortAuxCons = MortAuxCons;
     }
 }

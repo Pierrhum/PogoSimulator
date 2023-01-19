@@ -19,6 +19,11 @@ public class TitleScreen : MonoBehaviour
     private Vector3 initTitleScreenCameraPos;
     private Vector3 initTitleScreenCameraEul;
 
+    private void Start()
+    {
+        GameManager.instance.MusicIndex = Songs.value;
+    }
+
     private void StartFontAnimation(int TMPFontIndex)
     {
             FontAnimators[TMPFontIndex].StartAnimation();
@@ -49,6 +54,8 @@ public class TitleScreen : MonoBehaviour
             GameManager.instance.MusicDirector.Stop();
             GameManager.instance.MusicDirector.playableAsset = GameManager.instance.Musics[Songs.value];
             GameManager.instance.MusicDirector.Play();
+            GameManager.instance.MusicIndex = Songs.value;
+            GameManager.instance.BestScores.UpdateSongScores();
         }
     }
 
