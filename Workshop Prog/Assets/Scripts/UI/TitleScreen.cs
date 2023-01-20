@@ -10,7 +10,6 @@ using UnityEngine.UI;
 public class TitleScreen : MonoBehaviour
 {
     public PlayerController Player;
-    public PlayableDirector CameraTimeline;
     public TMP_Dropdown Songs;
     public Camera TitleScreenCamera;
     public GameObject Canvas;
@@ -43,7 +42,8 @@ public class TitleScreen : MonoBehaviour
         Cursor.visible = false;
         Canvas.SetActive(false);
         ReplayMusic();
-        StartCoroutine(GoToPlayerCameraCoroutine(.5f));
+        _animator.SetTrigger("Play");
+        //StartCoroutine(GoToPlayerCameraCoroutine(.5f));
     }
 
     public void ReplayMusic()
@@ -64,15 +64,9 @@ public class TitleScreen : MonoBehaviour
         }
     }
 
-    private IEnumerator GoToPlayerCameraCoroutine(float duration)
+    private void EndPlayAnimEvent()
     {
-        CameraTimeline.Play();
-        yield return new WaitForSeconds((float)CameraTimeline.duration);
-
         Player.CanPlay = true;
-        CameraTimeline.Pause();
-        CameraTimeline.time = 0;
-        CameraTimeline.Evaluate();
         TitleScreenCamera.enabled = false;
         Player.Camera.enabled = true;
         Player.FaceCamera.enabled = true;
