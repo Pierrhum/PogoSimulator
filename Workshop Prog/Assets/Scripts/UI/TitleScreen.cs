@@ -16,8 +16,12 @@ public class TitleScreen : MonoBehaviour
     public GameObject Canvas;
     public List<TMPFontAnimator> FontAnimators;
     
-    private Vector3 initTitleScreenCameraPos;
-    private Vector3 initTitleScreenCameraEul;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -73,6 +77,11 @@ public class TitleScreen : MonoBehaviour
         Player.Camera.enabled = true;
         Player.FaceCamera.enabled = true;
         HUD.instance.GameHUD.SetActive(true);
+    }
+
+    public void HowToPlay()
+    {
+        _animator.SetTrigger("HowToPlay");
     }
 
     public void Quit()
