@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public PlayableDirector MusicDirector;
     public List<TimelineAsset> Musics;
-    public Entrance _Entrance;
     public List<GameObject> StageGuys;
     public List<NPCDancer> Public;
     public List<PogoAI> PogoGuys;
@@ -72,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        _Entrance.HidePeople();
         Player.Reset();
         PogoGuys.ForEach(p =>
         {
