@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class DisableLightCamera : MonoBehaviour
+public class EnableCameraLight : MonoBehaviour
 {
     public List<Light> Lights;
 
@@ -19,7 +18,7 @@ public class DisableLightCamera : MonoBehaviour
             camera.name == gameObject.GetComponent<Camera>().name)
         {
             foreach (Light light in Lights){
-                light.enabled = false;
+                light.enabled = true;
             }
         }
     }
@@ -29,7 +28,7 @@ public class DisableLightCamera : MonoBehaviour
             camera.name == gameObject.GetComponent<Camera>().name)
         {
             foreach (Light light in Lights){
-                light.enabled = true;
+                light.enabled = false;
             }
         }
     }
