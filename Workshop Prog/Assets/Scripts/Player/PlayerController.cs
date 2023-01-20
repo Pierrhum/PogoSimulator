@@ -223,9 +223,12 @@ public class PlayerController : MonoBehaviour
 
     private void EnablePush()
     {
-        isPushing = true;
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Collider>().enabled = true;
+        if (!isStun)
+        {
+            isPushing = true;
+            GetComponent<Collider>().enabled = false;
+            GetComponent<Collider>().enabled = true;
+        }
     }
 
     private void DisablePush()
