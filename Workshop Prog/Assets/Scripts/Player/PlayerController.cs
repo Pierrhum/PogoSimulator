@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+    public Volume PostProcessVolume;
+    public AudioLowPassFilter LowPass;
     public PlayerHUD PlayerHUD;
     public List<Collider> RagDollColliders;
     public List<Rigidbody> RagDollRigidbodies;
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
         CurrentLife = MaxLife;
         InitPos = transform.position;
         InitEul = transform.eulerAngles;
+        PostProcessVolume.weight = 0;
         
         DisableRagdolls();
     }
@@ -128,11 +132,15 @@ public class PlayerController : MonoBehaviour
     {
         float timer = 0f;
         float start = Animator.GetFloat("GettingUpMotionTime");
+        float targetFrequency = Mathf.Lerp(1000f, 12000f, (float)GetUpKeyHit / KeyToGetUp);
+        float startFrequency = LowPass.cutoffFrequency;
         while (timer < duration)
         {
             float interpolation = Mathf.Lerp(start, (float)GetUpKeyHit / KeyToGetUp, timer / duration);
             PlayerHUD.SetGetUp(interpolation);
             Animator.SetFloat("GettingUpMotionTime", interpolation);
+            LowPass.cutoffFrequency = Mathf.Lerp(startFrequency, targetFrequency, interpolation);
+            
             timer += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
@@ -180,13 +188,21 @@ public class PlayerController : MonoBehaviour
             // Ragdoll
             else if (CurrentLife < MaxLife - (MaxLife / (Ragdolls + 1)) * (RagdollCount+1))
             {
+                
                 RagdollCount++;
+                LowPass.cutoffFrequency = 1000f;
                 EnableRagdolls();
                 isStun = true;
                 PlayerHUD.KeySpam.SetActive(true);
             }
             else
                 HurtFeeback();
+            
+            // Post Process
+            if (CurrentLife < MaxLife / 4)
+                StartCoroutine(PostProcessCoroutine(1f, 2f));
+            else if(CurrentLife < MaxLife / 2)
+                StartCoroutine(PostProcessCoroutine(0.5f, 4f));
         }
     }
 
@@ -222,6 +238,18 @@ public class PlayerController : MonoBehaviour
         isInvicible = true;
         HUD.instance.HurtFeedback();
         StartCoroutine(BlinkMeshCoroutine(6));
+    }
+
+    private IEnumerator PostProcessCoroutine(float targetWeight, float duration)
+    {
+        float initWeight = PostProcessVolume.weight;
+        float timer = 0f;
+        while (timer < duration)
+        {
+            PostProcessVolume.weight = Mathf.Lerp(initWeight, targetWeight, timer / duration);
+            timer += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
 
     private IEnumerator BlinkMeshCoroutine(int blink)
