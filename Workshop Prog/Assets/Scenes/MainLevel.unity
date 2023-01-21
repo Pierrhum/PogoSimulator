@@ -5235,6 +5235,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 722714638, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
   m_PrefabInstance: {fileID: 788220802565420972}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &310167909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 722714640, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+  m_PrefabInstance: {fileID: 788220802565420972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310167907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef4b2368bb2b184081291b50c73c607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &323149896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b7ce030d4af618f49851ce66a346e87d, type: 3}
@@ -6946,7 +6957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.32
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18622,6 +18633,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 81683406, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
+    - target: {fileID: 158205501, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 310167909}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TitleScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 674066358, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 722714640, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
       propertyPath: Player
       value: 
@@ -18682,6 +18729,14 @@ PrefabInstance:
       propertyPath: ScreenCameras.Array.data[5].associatedCamera
       value: 
       objectReference: {fileID: 1727100468}
+    - target: {fileID: 1028038534, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116570955, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
     - target: {fileID: 1328931449, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
       propertyPath: m_IsActive
       value: 1

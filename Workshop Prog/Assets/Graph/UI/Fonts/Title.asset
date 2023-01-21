@@ -54,13 +54,13 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: -0.11637951
+    - _FaceDilate: -0.01806516
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
     - _GlowOffset: 0.46
     - _GlowOuter: 0.402
-    - _GlowPower: 0.32327512
+    - _GlowPower: 0.68376106
     - _GradientScale: 6
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
@@ -72,8 +72,8 @@ Material:
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.77406627
-    - _ScaleRatioC: 0.77406627
+    - _ScaleRatioB: 0.69213766
+    - _ScaleRatioC: 0.69213766
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

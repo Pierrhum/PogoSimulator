@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     
     public void Fire(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (CanPlay && context.started)
         {
             Animator.SetTrigger("isPushing");
         }
@@ -135,7 +135,8 @@ public class PlayerController : MonoBehaviour
 
     public void ChargeShout(InputAction.CallbackContext context)
     {
-        AudioManager.instance.Play(Type.Charge);
+        if (CanPlay)
+            AudioManager.instance.Play(Type.Charge);
     }
 
     private IEnumerator GetUpAnimCoroutine(float duration)
