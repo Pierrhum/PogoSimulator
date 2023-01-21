@@ -32,4 +32,10 @@ public class EnableCameraLight : MonoBehaviour
             }
         }
     }
+    
+    void OnDestroy()
+    {
+        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
+        RenderPipelineManager.endCameraRendering -= OnEndCameraRendering;
+    }
 }

@@ -4052,6 +4052,11 @@ MonoBehaviour:
   Score: 10
   Strength: 10
   FadeOutDuration: 2
+  MaterialSwitchers:
+  - Opaque: {fileID: 2100000, guid: a1a9534f1867da1499e896d75299b7c9, type: 2}
+    Transparent: {fileID: 2100000, guid: d49cc46ae90eed244a228ab8808bbc79, type: 2}
+  - Opaque: {fileID: 2100000, guid: 07fcb38d8a4116646b3524e70471f53c, type: 2}
+    Transparent: {fileID: 2100000, guid: 5b923b65e8f82f34387c54551f03f7dc, type: 2}
 --- !u!136 &154679268709885013
 CapsuleCollider:
   m_ObjectHideFlags: 0

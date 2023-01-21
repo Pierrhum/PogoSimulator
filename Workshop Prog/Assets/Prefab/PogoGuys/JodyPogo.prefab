@@ -5313,6 +5313,11 @@ MonoBehaviour:
   Score: 10
   Strength: 7
   FadeOutDuration: 2
+  MaterialSwitchers:
+  - Opaque: {fileID: 2100000, guid: 7b90d00648a349d49b894e922e166269, type: 2}
+    Transparent: {fileID: 2100000, guid: 063c1b6851f6f4b4ea4f0df0accf2b46, type: 2}
+  - Opaque: {fileID: 2100000, guid: 825f2d5943a26fb49b255306623494e9, type: 2}
+    Transparent: {fileID: 2100000, guid: 1c9d1d35d3de94842b8a4a12dc560973, type: 2}
 --- !u!195 &1648141753835985004
 NavMeshAgent:
   m_ObjectHideFlags: 0

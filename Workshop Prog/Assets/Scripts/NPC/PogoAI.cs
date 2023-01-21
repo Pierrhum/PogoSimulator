@@ -17,6 +17,7 @@ public class PogoAI : MonoBehaviour
     private float Speed = 3f;
     private bool alive = true;
 
+    [SerializeField] private List<MaterialSwitcher> MaterialSwitchers;
     private List<SkinnedMeshRenderer> MeshesRenderer;
 
     private void Awake()
@@ -24,20 +25,31 @@ public class PogoAI : MonoBehaviour
         Animator = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();
         MeshesRenderer = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
-        
-        MeshesRenderer.ForEach(m => ChangeRenderMode(m.material));
+
     }
     
-    private void ChangeRenderMode(Material material)
+    private void ChangeRenderMode(SkinnedMeshRenderer mesh)
     {
-        material.SetFloat("_Mode", 2);
-        material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        material.SetInt("_ZWrite", 0);
-        material.DisableKeyword("_ALPHATEST_ON");
-        material.EnableKeyword("_ALPHABLEND_ON");
-        material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        material.renderQueue = 3000;
+        var materialsCopy = mesh.materials;
+        for (int index = 0; index < mesh.materials.Length; index++)
+        {
+            Material material = mesh.materials[index];
+            
+            // Switch to transparent
+            Material transparent = MaterialSwitchers.Find(m => (m.Opaque.name + " (Instance)").Equals(material.name)).Transparent;
+            transparent.SetFloat("_Mode", 2);
+            transparent.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            transparent.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            transparent.SetInt("_ZWrite", 0);
+            transparent.DisableKeyword("_ALPHATEST_ON");
+            transparent.EnableKeyword("_ALPHABLEND_ON");
+            transparent.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            transparent.renderQueue = 3000;
+            
+            materialsCopy[index] = transparent;
+        }
+
+        mesh.materials = materialsCopy;
     }
 
     public void StartRun(PogoSpawner _spawner)
@@ -55,6 +67,9 @@ public class PogoAI : MonoBehaviour
             else yield return new WaitForSeconds(1);
         }
 
+        foreach (SkinnedMeshRenderer mesh in MeshesRenderer)
+            ChangeRenderMode(mesh);
+
         yield return new WaitForSeconds(2);
         float timer = 0f;
         
@@ -67,12 +82,19 @@ public class PogoAI : MonoBehaviour
         }
 
         GameManager.instance.PogoGuys.Remove(this);
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     public void EnableRagdoll()
     {
         GetComponent<Collider>().enabled = Animator.enabled = alive = false;
         Agent.isStopped = true;
+    }
+
+    [Serializable]
+    private struct MaterialSwitcher
+    {
+        public Material Opaque;
+        public Material Transparent;
     }
 }
