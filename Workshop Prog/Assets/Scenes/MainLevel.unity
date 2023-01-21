@@ -7575,7 +7575,7 @@ GameObject:
   - component: {fileID: 794852694}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -10218,7 +10218,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SFX:
   - type: 0
-    SFX: {fileID: 8300000, guid: 7c1911d241f6a9e4a91334059e423b19, type: 3}
+    SFX:
+    - {fileID: 8300000, guid: 7c1911d241f6a9e4a91334059e423b19, type: 3}
+  - type: 1
+    SFX:
+    - {fileID: 8300000, guid: 57b7f299921ea8645828d780e951c997, type: 3}
+    - {fileID: 8300000, guid: e5fac1d12c47a994c8fd4f69cc30f972, type: 3}
+    - {fileID: 8300000, guid: d3f415e3bf1a6a34b90925e9e1b50b0d, type: 3}
+    - {fileID: 8300000, guid: 9d23de2d51d2d674a88d7e5fd8912f69, type: 3}
+  - type: 2
+    SFX:
+    - {fileID: 8300000, guid: 58d8cfdf37373914fb6d6b6055cf17d1, type: 3}
+  - type: 3
+    SFX:
+    - {fileID: 8300000, guid: 078e46ebb43a23348bec918367b0526d, type: 3}
+    - {fileID: 8300000, guid: b60b27b83e56dd942ad590f7f2a4bca7, type: 3}
+  - type: 4
+    SFX:
+    - {fileID: 8300000, guid: 73e867a040edbeb498ebcb7831fd9a5f, type: 3}
+  - type: 5
+    SFX:
+    - {fileID: 8300000, guid: 952f7fdc48a137844b12ed167d72b16e, type: 3}
 --- !u!4 &912094029
 Transform:
   m_ObjectHideFlags: 0
@@ -11151,7 +11171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: F
+  m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5caa9dee3fed82949ae6c398330f51d0, type: 2}
   m_sharedMaterial: {fileID: 2681352659617532721, guid: 5caa9dee3fed82949ae6c398330f51d0, type: 2}
@@ -13683,7 +13703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: F
+  m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5caa9dee3fed82949ae6c398330f51d0, type: 2}
   m_sharedMaterial: {fileID: 2681352659617532721, guid: 5caa9dee3fed82949ae6c398330f51d0, type: 2}
@@ -14828,7 +14848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: F
+  m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5caa9dee3fed82949ae6c398330f51d0, type: 2}
   m_sharedMaterial: {fileID: 2681352659617532721, guid: 5caa9dee3fed82949ae6c398330f51d0, type: 2}
@@ -18730,6 +18750,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2036723230, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 2086151225, guid: fd7fcaed7f3503049a90c066485ef4a8, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 0
@@ -18909,6 +18933,46 @@ PrefabInstance:
     - target: {fileID: 1188007488826563495, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
+      value: a67eb4bc-d58c-4fde-bbed-42ec826fbe38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
+      value: Player/ChargeShout[/Keyboard/1]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 25936066}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChargeShout
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188007489168397393, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1188007489168397398, guid: 32b46eaf9e564b74d931c4b2e71547e0, type: 3}
       propertyPath: Aim

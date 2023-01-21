@@ -89,9 +89,9 @@ public class EndGameScreen : MonoBehaviour
         float f = (float)EndCamera.GetComponent<PlayableDirector>().duration;
         yield return new WaitForSeconds(f);
         
-        EndCamera.GetComponent<PlayableDirector>().Pause();
         EndCamera.GetComponent<PlayableDirector>().time = 0;
         EndCamera.GetComponent<PlayableDirector>().Evaluate();
+        EndCamera.GetComponent<PlayableDirector>().Stop();
         EndCamera.enabled = false;
         TitleScreen.GetComponent<TitleScreen>().Canvas.SetActive(true);
         TitleScreen.GetComponent<TitleScreen>().TitleScreenCamera.enabled = true;

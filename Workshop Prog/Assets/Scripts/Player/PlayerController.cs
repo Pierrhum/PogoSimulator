@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour
     public void Reset()
     {
         isStun = false;
+        PlayerHUD.KeySpam.SetActive(false);
+        LowPass.cutoffFrequency = 12000f;
+        PostProcessVolume.weight = 0;
         Score = 0;
         HUD.instance.SetScore(Score);
         CurrentLife = MaxLife;
@@ -100,6 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             if (GetUpKeyHit == 0)
             {
+                AudioManager.instance.Play(Type.StartGetUp);
                 Animator.enabled = true;
                 Animator.SetBool("isGettingUp", true);
                 Animator.SetFloat("GettingUpMotionTime", 0f);
@@ -118,6 +122,7 @@ public class PlayerController : MonoBehaviour
             
             if (GetUpKeyHit == KeyToGetUp)
             {
+                AudioManager.instance.Play(Type.EndGetUp);
                 Animator.SetBool("isGettingUp", false);
                 StopCoroutine(GetUpCoroutine);
                 isStun = false;
@@ -126,6 +131,11 @@ public class PlayerController : MonoBehaviour
                 PlayerHUD.SetGetUp(1f);
             }
         }
+    }
+
+    public void ChargeShout(InputAction.CallbackContext context)
+    {
+        AudioManager.instance.Play(Type.Charge);
     }
 
     private IEnumerator GetUpAnimCoroutine(float duration)
@@ -188,7 +198,7 @@ public class PlayerController : MonoBehaviour
             // Ragdoll
             else if (CurrentLife < MaxLife - (MaxLife / (Ragdolls + 1)) * (RagdollCount+1))
             {
-                
+                AudioManager.instance.Play(Type.Fall);
                 RagdollCount++;
                 LowPass.cutoffFrequency = 1000f;
                 EnableRagdolls();
@@ -239,6 +249,7 @@ public class PlayerController : MonoBehaviour
     private void HurtFeeback()
     {
         isInvicible = true;
+        AudioManager.instance.Play(Type.Hurt);
         HUD.instance.HurtFeedback();
         StartCoroutine(BlinkMeshCoroutine(6));
     }

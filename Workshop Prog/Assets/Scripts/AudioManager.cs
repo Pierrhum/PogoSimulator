@@ -2,14 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public enum Type {Gaddem};
+public enum Type
+{
+    Gaddem,
+    Hurt,
+    Charge,
+    Fall,
+    StartGetUp,
+    EndGetUp
+};
 
 [System.Serializable]
 public class Sound
 {
     public Type type;
-    public AudioClip SFX;
+    public List<AudioClip> SFX;
 }
 
 public class AudioManager : MonoBehaviour
@@ -27,7 +36,12 @@ public class AudioManager : MonoBehaviour
 
     public void Play(Type type)
     {
-        AudioClip sound = SFX.Find(s => s.type.Equals(type)).SFX;
-        Source.PlayOneShot(sound);
+        Sound _sound = SFX.Find(s => s.type.Equals(type));
+        AudioClip _SFX;
+        if (_sound.SFX.Count > 1)
+            _SFX = _sound.SFX[Random.Range(0, _sound.SFX.Count)];
+        else
+            _SFX = _sound.SFX[0];
+        Source.PlayOneShot(_SFX);
     }
 }
