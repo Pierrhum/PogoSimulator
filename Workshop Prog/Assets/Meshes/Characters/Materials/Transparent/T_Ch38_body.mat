@@ -12,7 +12,8 @@ Material:
   m_ValidKeywords:
   - _NORMALMAP
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHABLEND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -98,7 +99,7 @@ Material:
     - _Glossiness: 0.4472136
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0

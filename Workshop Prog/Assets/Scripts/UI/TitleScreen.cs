@@ -15,6 +15,7 @@ public class TitleScreen : MonoBehaviour
     public GameObject Canvas;
     public List<TMPFontAnimator> FontAnimators;
     
+    [SerializeField] private PogoSpawner _spawner;
     private Animator _animator;
 
     private void Awake()
@@ -43,7 +44,10 @@ public class TitleScreen : MonoBehaviour
         Canvas.SetActive(false);
         ReplayMusic();
         _animator.SetTrigger("Play");
-        //StartCoroutine(GoToPlayerCameraCoroutine(.5f));
+        
+        GameManager.instance.Reset();
+        for(int i=0; i < _spawner.MaxAI; i++)
+            _spawner.AddPogoGuy();
     }
 
     public void ReplayMusic()

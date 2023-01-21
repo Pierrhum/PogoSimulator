@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class PogoSpawner : MonoBehaviour
 {
+    public int MaxAI = 30;
     public List<GameObject> PogoGuysPrefabs;
     public float Radius = 5f;
 
@@ -18,14 +19,19 @@ public class PogoSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (!GameManager.instance.Freezed)
+            if (!GameManager.instance.Freezed && GameManager.instance.PogoGuys.Count < MaxAI)
             {
-                GameObject go = Instantiate(PogoGuysPrefabs[Random.Range(0, PogoGuysPrefabs.Count)], transform.position + RandomPointOnCircleEdge(), Quaternion.identity, transform);
-                go.GetComponent<PogoAI>().StartRun(this);
-                GameManager.instance.PogoGuys.Add(go.GetComponent<PogoAI>());
+                AddPogoGuy();
             }
             yield return new WaitForSeconds(2f);
         }
+    }
+
+    public void AddPogoGuy()
+    {
+        GameObject go = Instantiate(PogoGuysPrefabs[Random.Range(0, PogoGuysPrefabs.Count)], transform.position + RandomPointOnCircleEdge(), Quaternion.identity, transform);
+        go.GetComponent<PogoAI>().StartRun(this);
+        GameManager.instance.PogoGuys.Add(go.GetComponent<PogoAI>());
     }
     
     public Vector3 RandomPointOnCircleEdge()
