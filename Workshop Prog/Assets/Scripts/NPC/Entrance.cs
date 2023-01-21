@@ -17,4 +17,10 @@ public class Entrance : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>() != null)
             PogoZoneColliders.SetActive(true);
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+            PogoZoneColliders.SetActive(false);
+    }
 }
