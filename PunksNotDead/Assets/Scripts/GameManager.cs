@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerController Player;
     public PlayableDirector MusicDirector;
-    public List<TimelineAsset> Musics;
+    public List<SongData> Songs;
     public List<GameObject> StageGuys;
     public List<NPCDancer> Public;
     public List<PogoAI> PogoGuys;
@@ -79,5 +79,12 @@ public class GameManager : MonoBehaviour
         });
         PogoGuys.Clear();
         UnFreezePeople();
+    }
+
+    public void ReplayMusic()
+    {
+        MusicDirector.Stop();
+        MusicDirector.playableAsset = Songs[MusicIndex].Timeline;
+        MusicDirector.Play();
     }
 }

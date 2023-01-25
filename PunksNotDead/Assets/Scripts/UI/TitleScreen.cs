@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class TitleScreen : MonoBehaviour
 {
     public PlayerController Player;
-    public TMP_Dropdown Songs;
+    public Ticket Ticket;
     public Camera TitleScreenCamera;
     public GameObject Canvas;
     public List<TMPFontAnimator> FontAnimators;
@@ -25,7 +25,7 @@ public class TitleScreen : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.MusicIndex = Songs.value;
+        GameManager.instance.MusicIndex = 0;
         GameManager.instance.BestScores.UpdateSongScores();
     }
 
@@ -39,7 +39,6 @@ public class TitleScreen : MonoBehaviour
     }
     public void Play()
     {
-        GameManager.instance.MusicIndex = Songs.value;
         AudioManager.instance.Play(Type.Gaddem);
         Cursor.visible = false;
         Canvas.SetActive(false);
@@ -55,18 +54,6 @@ public class TitleScreen : MonoBehaviour
     {
         GameManager.instance.MusicDirector.Stop();
         GameManager.instance.MusicDirector.Play();
-    }
-
-    public void DropdownValueChanged()
-    {
-        if (Songs.value < GameManager.instance.Musics.Count)
-        {
-            GameManager.instance.MusicDirector.Stop();
-            GameManager.instance.MusicDirector.playableAsset = GameManager.instance.Musics[Songs.value];
-            GameManager.instance.MusicDirector.Play();
-            GameManager.instance.MusicIndex = Songs.value;
-            GameManager.instance.BestScores.UpdateSongScores();
-        }
     }
 
     private void EndPlayAnimEvent()
