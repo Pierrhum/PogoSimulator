@@ -181,11 +181,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Hurt(float damage)
+    private void Hurt(float amount)
     {
         if (!isStun && !isInvicible)
         {
-            CurrentLife -= damage;
+            CurrentLife -= amount;
             HUD.instance.UpdateHealthBar(CurrentLife / MaxLife);
             Animator.SetFloat("Life", CurrentLife / MaxLife);
             
@@ -214,6 +214,20 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(PostProcessCoroutine(1f, 2f));
             else if(CurrentLife < MaxLife / 2)
                 StartCoroutine(PostProcessCoroutine(0.5f, 4f));
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        if (!isStun)
+        {
+            CurrentLife += amount;
+            if (CurrentLife > MaxLife) CurrentLife = MaxLife;
+            
+            HUD.instance.UpdateHealthBar(CurrentLife / MaxLife);
+            Animator.SetFloat("Life", CurrentLife / MaxLife);
+            
+            //TODO : Add Feedback
         }
     }
 
